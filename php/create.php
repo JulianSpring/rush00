@@ -1,46 +1,74 @@
 <?php
-
-## Create a user account
-# Post method. Takes in variables 'email', 'passwd', 'full_name'
-# User should only be able to create an account if they are NOT logged in. 
-$link = mysqli_connect('127.0.0.1', 'root', '123456', 'rush00');
-//include("/install.php");
-
-/* Checking to see that all post values are present and are not empty
- * TODO Post values required from html: 'email', 'passwd', 'full_name' 
- */
-
-$check = false; // Check variable to see if input is valid
-if (isset($_POST))
+$conn = mysqli_connect("127.0.0.1", "root", "15891589");
+mysqli_select_db($conn, "rush00");
+if (empty($_POST))
 {
-	if (!isset($_POST["email"]) || $_POST["email"] == "")
-	{
-		/* TODO User didn't enter an email address */
-	}
-	else if (!isset($_POST["passwd"]) || $_POST["password"] == "")
-	{
-		/* TODO User didn't enter a password */
-	}
-	else if (!isset($_POST["full_name"]) || $_POST["full_name"] == "")
-	{
-		/* TODO User didn't enter a full name */
-	}
-	else
-		$check = true; /* All values are good so check set to true */
+	/*
+	 * Form not yet fille out.
+	 * TODO Insert HTML form code here
+	 */
 }
 else
 {
-	/* TODO Variables not set, user first opened page, display html form*/
+	/*
+	 * Check that user isn't logged on
+	 */
+	if ($_SESSION["logged_on_user"] == "")
+	{
+		$email = $_POST["email"];
+		$passwd = hash("whirlpool", "kyriakos" . $_POST["passwd"]);
+		$full_name = $_POST["full_name"];
+
+		/*
+		 * Verify input
+		 */
+		if ($email != "" && $passwd != "")
+		{
+			/* 
+			 * Check if the user already exists 
+			 */
+			$sql_check = mysqli_query(
+				$conn, "SELECT id FROM tbl_users WHERE email='$email';");
+			if (mysqli_num_rows($sql_check) > 0)
+			{
+				/*
+				 * User already exists
+				 * TODO tell them.
+				 */
+			} else
+			{
+				/*
+				 * Add user
+				 */
+				$sql_add = "
+					INSERT INTO tbl_users(email, full_name, passwd)
+					VALUES('$email', '$full_name', '$passwd');";
+				if (!mysqli_query($conn, $sql_add))
+					echo "Error adding user2: " . mysqli_error($conn) . "\n";
+				else
+				{
+					/*
+					 * Successfully added user
+					 * TODO Tell user and redirect
+					 */
+				}
+			}
+		}
+		else
+		{
+			/*
+			 * An Input field was blank. TODO notify user
+			 */
+		}
+	}
+	else
+	{
+		/*
+		 * User is already logged in
+		 * I don't know if this requires HTML, or
+		 * Will the "create account" button be invisible while the user is logged in?
+		 * Added the else just in case
+		 */
+	}
 }
-
-if ($check == true && $_SESSION["logged_on_user"] == "")
-{
-	$email = $_POST["email"];
-	$passwd = hash("whirlpool", $_POST["passwd"]);
-	$hash = md5(rand(0, 1000));
-
-	/* Check if the user already exists */
-	$sql_check = mysqli_query($link, "SELECT id FROM tbl_user WHERE email='$email'';");
-}
-
 ?>
