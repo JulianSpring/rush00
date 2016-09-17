@@ -8,14 +8,16 @@ include("auth.php");
 session_start();
 if (!empty($_POST))
 {
-	if (auth($_POST["email"], $_POST["passwd"]) == true)
+	if (auth($_POST["email"], $_POST["passwd"]))
 	{
 		$_SESSION["logged_on_user"] = $_POST["email"];
-		echo "Logged\n";
+		/*
+		 * User logged in successfully
+		 * TODO 
+		 */
 	}
 	else
 	{
-		echo "Incorrect\n";
 		/*
 		 * Email/Password was incorrect
 		 * TODO tell user
