@@ -1,9 +1,8 @@
-## Create a user account
+<?php
+##Create a user account
 # Post method. Takes in variables 
 # User should only be able to create an account if they are NOT logged in and have tried to check out. 
-<?php
-
-include("install.php");
+//include("install.php");
 
 /* Checking to see that all post values are present and are not empty
  * TODO Post values required from html: 'email', 'passwd', 'full_name' 
@@ -23,5 +22,18 @@ if ($i == 3)
 }
 else
 	/* TODO Error */
-
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Penisland | Sign Up</title>
+</head>
+<body>
+	<form>
+	<p>Email: </p> <input name="email" value=""/>
+	<p>Password </p> <input name="passwd" type="password" value=""/> 
+	<p>Full Name : </p>
+	</form>>
+</body>
+</html>
