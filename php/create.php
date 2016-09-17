@@ -1,21 +1,15 @@
-<<<<<<< HEAD
 <?php
-##Create a user account
-# Post method. Takes in variables 
-# User should only be able to create an account if they are NOT logged in and have tried to check out. 
-//include("install.php");
-=======
+
 ## Create a user account
 # Post method. Takes in variables 'email', 'passwd', 'full_name'
 # User should only be able to create an account if they are NOT logged in. 
-<?php
-
-include("install.php");
->>>>>>> 206bc4860c9cf86c3976487e1951f869c5d9f9d2
+$link = mysqli_connect('127.0.0.1', 'root', '123456', 'rush00');
+//include("/install.php");
 
 /* Checking to see that all post values are present and are not empty
  * TODO Post values required from html: 'email', 'passwd', 'full_name' 
  */
+
 $check = false; // Check variable to see if input is valid
 if (isset($_POST))
 {
@@ -46,30 +40,7 @@ if ($check == true && $_SESSION["logged_on_user"] == "")
 	$hash = md5(rand(0, 1000));
 
 	/* Check if the user already exists */
-	$sql_check = mysql_query("SELECT id FROM tbl_user WHERE email='$email'';");
-}
-else
-<<<<<<< HEAD
-	/* TODO Error */
-=======
-{
-	
+	$sql_check = mysqli_query($link, "SELECT id FROM tbl_user WHERE email='$email'';");
 }
 
-
->>>>>>> 206bc4860c9cf86c3976487e1951f869c5d9f9d2
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Penisland | Sign Up</title>
-</head>
-<body>
-	<form>
-	<p>Email: </p> <input name="email" value=""/>
-	<p>Password </p> <input name="passwd" type="password" value=""/> 
-	<p>Full Name : </p>
-	</form>>
-</body>
-</html>
