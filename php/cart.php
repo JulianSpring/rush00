@@ -20,7 +20,26 @@ function add_to_cart($item_id)
 	$query_fetch = mysqli_query($conn,
 		"SELECT * FROM tbl_store WHERE id = '$item_id';");
 	$item = mysqli_fetch_assoc($query_fetch);
+	$_SESSION["cart"][$len] = $item;
 }
 
+function remove_from_cart($item_id)
+{
+	$newArr = array();
+	$i = 0;
+	$j = 0;
+	foreach($_SESSION["cart"] as $item)
+	{
+		if ($item["id"] != $item_id)
+		{
+			$newArr[$i] = $_SESSION["cart"][$j];
+			$i++;
+			$j++;
+		}
+		else
+			$j++;
+	}
+	$_SESSION["cart"] = $newArr;
+}
 
 ?>
