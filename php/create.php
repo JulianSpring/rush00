@@ -48,12 +48,7 @@ else
 				if (!mysqli_query($conn, $sql_add))
 					echo "Error adding user2: " . mysqli_error($conn) . "\n";
 				else
-				{
-					/*
-					 * Successfully added user
-					 * TODO Tell user and redirect
-					 */
-				}
+					header("Location: store.php");
 			}
 		}
 		else

@@ -8,31 +8,30 @@ include("auth.php");
 session_start();
 if (!empty($_POST))
 {
-	if (auth($_POST["email"], $_POST["passwd"]))
+	if (auth($_POST["email"], $_POST["passwd"], "tbl_users"))
 	{
 		$_SESSION["logged_on_user"] = $_POST["email"];
-		/*
-		 * User logged in successfully
-		 * TODO 
-		 */
+		header("Location: ../index.php");
 	}
 	else
 	{
-		/*
-		 * Check to see for admin log in
-		 */
-		
-		/*
-		 * Email/Password was incorrect
-		 * TODO tell user
-		 */
+		header("Location: login.php");
 	}
 }
 else
 {
-	/*
-	 * $_POST is empty, TODO show html
-	 * Alternatively .html can be used
-	 */
+	echo '
+	<html>
+		<body>
+		<form action="login.php" method="post">
+		Email: <br />
+		<input type="text" name="email" value=""/> <br />
+		Password: <br />
+		<input type="text" name="passwd" value="" /> <br />
+		<input type="submit" name="submit" value="OK" /> 
+		</form>
+		</body>
+		</html>
+		';
 }
 ?>
