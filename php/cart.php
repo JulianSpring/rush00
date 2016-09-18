@@ -7,6 +7,12 @@
  * TODO HAS NOT BEEN TESTED
  */
 
+if (!empty($_REQUEST))
+{
+	add_to_cart($_REQUEST["cart"]);
+	header("Location: store.php");
+}
+
 function add_to_cart($item_id)
 {
 	$conn = mysqli_connect("127.0.0.1", "root", "15891589");

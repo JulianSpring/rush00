@@ -23,7 +23,7 @@
         <div class="caption">
             <h1> Discover <span><b>ARQ</b></span></h1>
             <a class="btn btn-transparent" href="#popup1">Sign Up</a>
-			<a class="btn btn-light" href="/html/store.php">Buy Now</a>
+			<a class="btn btn-light" href="php/store.php">Buy Now</a>
         </div>
 <!-- popup signin -->
         <div id="popup1" class="overlay1">
