@@ -19,6 +19,10 @@ if (!empty($_POST))
 	else
 	{
 		/*
+		 * Check to see for admin log in
+		 */
+		
+		/*
 		 * Email/Password was incorrect
 		 * TODO tell user
 		 */

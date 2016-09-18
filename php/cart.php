@@ -7,28 +7,19 @@
  * TODO HAS NOT BEEN TESTED
  */
 
-function add_to_cart($email, $item_id)
+function add_to_cart($item_id)
 {
-	$file = "../data/cart";
-	$cart = array();
-	$cart = unserialize(file_get_contents($file));
-	$len = 0;
-	foreach ($cart as $item)
-		$len++;
-
-	/*
-	 * Fetching all the details of the item for the database
-	 */
 	$conn = mysqli_connect("127.0.0.1", "root", "15891589");
 	mysqli_select_db($conn, "rush00");
-	if (!($query = mysqli_query($conn, "SELECT * FROM tbl_products WHERE id = '$item_id';")))
-	{
-		$row = mysql_fetch_assoc($query);
-		$cart[$len] = $row;
-		file_put_contents($file, serialize($cart));
-	}
-	else
-		echo "Add to cart query error " . mysql_error($conn) . "\n";
+
+	if (!$_SESSION["cart"])
+		$_SESSION["cart"] = array();
+	$len = 0;
+	foreach ($_SESSION["cart"] as $item)
+		$len++;
+	$query_fetch = mysqli_query($conn,
+		"SELECT * FROM tbl_store WHERE id = '$item_id';");
+	$item = mysqli_fetch_assoc($query_fetch);
 }
 
 

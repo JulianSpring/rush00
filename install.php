@@ -30,12 +30,28 @@
 		echo "Error creating table " . mysqli_error($conn) . "\n";
 
 	 /*
-	  * Create data file and initialize cart
+	  * Create table tbl_store
 	  */
-	$cart = array();
-	$file = "../data/cart";
-	if (!file_exists("../data"))
-		mkdir("../data", 0777, true);
-	if (!file_exists($file))
-		file_put_contents($file, serialize(cart));
+	$sql_create_table = 
+		"CREATE TABLE IF NOT EXISTS tbl_store
+		(id int NOT NULL AUTO_INCREMENT,
+		category varchar(128) NOT NULL,
+		name varchar (72) NOT NULL,
+		price double,
+		image varchar(256),
+		PRIMARY KEY (id) );";
+	if (!mysqli_query($conn, $sql_create_table))
+		echo "Error creating store table";
+
+	/*
+	 * Create table tbl_admin for admin users
+	 */
+	$sql_create_table = 
+		"CREATE TABLE IF NOT EXISTS tbl_admin
+		(id int NOT NULL AUTO_INCREMENT,
+		email varchar(128) NOT NULL,
+		passwd varchar(512) NOT NULL,
+		PRIMARY KEY (id) );";
+	if (!mysqli_query($conn, $sql_create_table))
+		echo "Error creating admin table";
 ?>
