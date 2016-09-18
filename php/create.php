@@ -6,6 +6,8 @@ if (empty($_POST))
 	/*
 	 * Form not yet fille out.
 	 * TODO Insert HTML form code here
+	 * Alernatively you can create a seperate .html file and pass in 
+	 * the variables then this block won't be called and can be removed
 	 */
 }
 else
