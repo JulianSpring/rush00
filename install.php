@@ -36,7 +36,7 @@
 	 $sql_create_table = 
 		"CREATE TABLE IF NOT EXISTS tbl_users
 		( id int NOT NULL AUTO_INCREMENT,
-		catorgory varchar(128) NOT NULL,
+		catergory varchar(128) NOT NULL,
 		name varchar(512) NOT NULL,
 		price double NOT NULL,
 		image varchar(128) NOT NULL,

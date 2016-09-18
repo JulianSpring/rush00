@@ -15,8 +15,7 @@ else
 	/*
 	 * Check that user isn't logged on
 	 */
-	if ($_SESSION["logged_on_user"] == "")
-	{
+	if($_SERVER["REQUEST_METHOD" === "POST"])
 		$email = $_POST["email"];
 		$passwd = hash("whirlpool", "kyriakos" . $_POST["passwd"]);
 		$full_name = $_POST["full_name"];

@@ -31,47 +31,18 @@
             <div class="popup">
                 <a class="close" href="#">X</a>
                 <div class="content">
-                     <form action="create.php" method="POST">
-                        <h2>Sign Up</h2>
-                        <div class="form" align="center">
-                            <div id="usernameField">
-                                <div>
-                                    <div class="formLabel">
-                                        <label>Email</label>
-                                    </div>
-                                    <input type="text" name="email" autocomplete="off">
-                                </div>
-                                <div id="passwdFeild">
-                                    <div class="formLabel">
-                                        <label>Password</label>
-                                    </div>
-                                    <input type="password" name="passwd" autocomplete="off">
-                                </div>
-                                <div class="passwdFeild">
-                                    <div class="formLabel">
-                                        <label>Password Confirm</label>
-                                    </div>
-                                    <input type="password" name="passwd" autocomplete="off">
-                                </div>
-                                <div class="passwdFeild">
-                                    <div class="formLabel">
-                                        <label>Full Name</label>
-                                    </div>
-                                    <input type="password" name="pwd" autocomplete="off">
-                                </div>
-                                <div class="passwdFeild">
-                                    <div class="formLabel">
-                                        <label>Password</label>
-                                    </div>
-                                    <input type="password" name="pwd" autocomplete="off">
-                                </div>
-                                <div class="sign-button-cont">
-                                    <a class="btn btn-pop" href="#">Discover</a>
-                                    <a class="btn" href="#popup2">Login</a>
-                                </div>
-                            </div>   
-                        </div>
-                     </form>
+                   <form method="POST" action="php/create.php"> 
+                        Name: <input type="text" name="full_name">
+                        <span class="error">* <?php echo $nameErr;?></span>
+                         <br><br>
+                        E-mail: <input type="text" name="email">
+                        <span class="error">* <?php echo $emailErr;?></span>
+                        <br><br>
+                        Password: <input type="text" name="passwd">
+                        <span class="error"><?php echo $websiteErr;?></span>
+                        <br><br>                        
+                        <input class="btn" type="submit" name="submit" value="Submit">  
+                    </form>
                 </div>
             </div>
         </div>
